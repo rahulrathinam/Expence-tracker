@@ -1,42 +1,5 @@
 # Multi-stage build for production
-FROM node:18-alpine AS backend-build
-
-# Set working directory
-WORKDIR /app/backend
-
-# Copy backend package files
-COPY backend/package*.json ./
-
-# Install backend dependencies
-RUN npm ci --only=production
-
-# Copy backend source code
-COPY backend/src ./src
-COPY backend/tsconfig.json ./
-
-# Build backend
-RUN npm run build
-
-# Frontend build stage
-FROM node:18-alpine AS frontend-build
-
-# Set working directory
-WORKDIR /app/frontend
-
-# Copy frontend package files
-COPY frontend/package*.json ./
-
-# Install frontend dependencies
-RUN npm ci
-
-# Copy frontend source code
-COPY frontend/ ./
-
-# Build frontend
-RUN npm run build
-
-# Production stage
-FROM node:18-alpine AS production
+FROM node:18-alpine AS base
 
 # Install dumb-init for proper signal handling
 RUN apk add --no-cache dumb-init
@@ -48,13 +11,23 @@ RUN adduser -S nextjs -u 1001
 # Set working directory
 WORKDIR /app
 
-# Copy backend build
-COPY --from=backend-build /app/backend/dist ./backend/dist
-COPY --from=backend-build /app/backend/node_modules ./backend/node_modules
-COPY --from=backend-build /app/backend/package*.json ./backend/
+# Copy package files
+COPY package*.json ./
+COPY backend/package*.json ./backend/
+COPY frontend/package*.json ./frontend/
 
-# Copy frontend build
-COPY --from=frontend-build /app/dist ./frontend/dist
+# Install dependencies
+RUN npm ci --only=production
+RUN cd backend && npm ci --only=production
+RUN cd frontend && npm ci
+
+# Copy source code
+COPY backend/ ./backend/
+COPY frontend/ ./frontend/
+
+# Build applications
+RUN cd backend && npm run build
+RUN cd frontend && npm run build
 
 # Create environment file
 RUN echo "NODE_ENV=production" > .env
