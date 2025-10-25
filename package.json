@@ -3,11 +3,12 @@
   "version": "1.0.0",
   "description": "Full-stack expense tracker application with React frontend and Node.js backend",
   "scripts": {
-    "build": "cd backend && npm run build && cd ../frontend && npm run build",
+    "build": "cd frontend && npm run build",
     "dev": "concurrently \"cd backend && npm run dev\" \"cd frontend && npm run dev\"",
     "start": "cd backend && npm start",
     "install-all": "npm install && cd backend && npm install && cd ../frontend && npm install",
-    "postinstall": "npm run install-all"
+    "postinstall": "npm run install-all",
+    "vercel-build": "npm run build"
   },
   "devDependencies": {
     "concurrently": "^8.2.0"
