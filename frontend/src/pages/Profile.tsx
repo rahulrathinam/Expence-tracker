@@ -26,7 +26,7 @@ const Profile: React.FC = () => {
     }
   })
 
-  const onSubmit = async (data: ProfileFormData) => {
+  const onSubmit = async (_data: ProfileFormData) => {
     setLoading(true)
     try {
       // In a real app, you would call an API to update the user profile

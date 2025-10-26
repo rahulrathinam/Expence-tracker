@@ -7,7 +7,7 @@ interface ExpensesResponse {
 }
 
 export const expenseService = {
-  async getExpenses(token: string, filters?: ExpenseFilters): Promise<ExpensesResponse> {
+  async getExpenses(_token: string, filters?: ExpenseFilters): Promise<ExpensesResponse> {
     try {
       const params = new URLSearchParams()
       
@@ -30,7 +30,7 @@ export const expenseService = {
     }
   },
 
-  async createExpense(token: string, data: ExpenseFormData): Promise<Expense> {
+  async createExpense(_token: string, data: ExpenseFormData): Promise<Expense> {
     try {
       const response = await api.post<ApiResponse<{ expense: Expense }>>('/expenses', data)
       
@@ -44,7 +44,7 @@ export const expenseService = {
     }
   },
 
-  async updateExpense(token: string, id: string, data: ExpenseFormData): Promise<Expense> {
+  async updateExpense(_token: string, id: string, data: ExpenseFormData): Promise<Expense> {
     try {
       const response = await api.put<ApiResponse<{ expense: Expense }>>(`/expenses/${id}`, data)
       
@@ -58,7 +58,7 @@ export const expenseService = {
     }
   },
 
-  async deleteExpense(token: string, id: string): Promise<void> {
+  async deleteExpense(_token: string, id: string): Promise<void> {
     try {
       const response = await api.delete<ApiResponse<void>>(`/expenses/${id}`)
       
@@ -70,7 +70,7 @@ export const expenseService = {
     }
   },
 
-  async getStats(token: string, startDate?: string, endDate?: string): Promise<ExpenseStats> {
+  async getStats(_token: string, startDate?: string, endDate?: string): Promise<ExpenseStats> {
     try {
       const params = new URLSearchParams()
       if (startDate) params.append('startDate', startDate)

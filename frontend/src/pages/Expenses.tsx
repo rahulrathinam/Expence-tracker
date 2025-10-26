@@ -4,11 +4,9 @@ import { format } from 'date-fns'
 import { 
   Plus, 
   Search, 
-  Filter, 
   Edit, 
   Trash2, 
   Calendar,
-  DollarSign,
   Receipt
 } from 'lucide-react'
 import { EXPENSE_CATEGORIES } from '../types'

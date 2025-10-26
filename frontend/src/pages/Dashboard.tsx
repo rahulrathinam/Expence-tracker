@@ -7,9 +7,7 @@ import {
   TrendingUp, 
   Receipt, 
   Calendar,
-  Plus,
-  ArrowUpRight,
-  ArrowDownRight
+  Plus
 } from 'lucide-react'
 import { Link } from 'react-router-dom'
 

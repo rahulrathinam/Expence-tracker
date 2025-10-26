@@ -16,7 +16,6 @@ import {
 import { Bar, Doughnut, Line } from 'react-chartjs-2'
 import { 
   TrendingUp, 
-  TrendingDown, 
   DollarSign, 
   Calendar,
   BarChart3,
@@ -214,7 +213,7 @@ const Analytics: React.FC = () => {
               <div>
                 <p className="text-sm font-medium text-gray-600">Average per Transaction</p>
                 <p className="text-3xl font-bold text-gray-900">
-                  ₹{stats?.totalExpenses.count > 0 
+                  ₹{stats && stats.totalExpenses.count > 0 
                     ? (stats.totalExpenses.total / stats.totalExpenses.count).toFixed(2)
                     : '0.00'
                   }
