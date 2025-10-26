@@ -18,7 +18,7 @@ app.use(helmet());
 app.use(cors({
   origin: process.env.NODE_ENV === 'production' 
     ? [process.env.FRONTEND_URL || 'https://your-frontend-domain.com'] 
-    : ['http://localhost:5173', 'http://localhost:3000', 'http://127.0.0.1:5173'],
+    : ['http://localhost:5173', 'http://localhost:5174', 'http://localhost:3000', 'http://127.0.0.1:5173'],
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization']
@@ -51,7 +51,7 @@ app.use('*', (req, res) => {
 // Database connection
 const connectDB = async () => {
   try {
-    const mongoURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/expense-tracker';
+    const mongoURI = process.env.MONGODB_URI || 'mongodb+srv://rahulr21cse_db_user:Rahul@2003@cluster0.lvyl1tz.mongodb.net/';
     await mongoose.connect(mongoURI);
     console.log('✅ MongoDB connected successfully');
   } catch (error) {
