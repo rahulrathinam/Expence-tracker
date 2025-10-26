@@ -1,5 +1,5 @@
 import { useAuth } from '../contexts/AuthContext'
-import { LogOut, Bell, Settings } from 'lucide-react'
+import { LogOut } from 'lucide-react'
 
 const Header: React.FC = () => {
   const { user, logout } = useAuth()

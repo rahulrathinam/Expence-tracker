@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useExpenses } from '../contexts/ExpenseContext'
-import { format, subMonths, startOfMonth, endOfMonth } from 'date-fns'
+import { format, startOfMonth, endOfMonth } from 'date-fns'
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -13,7 +13,7 @@ import {
   PointElement,
   LineElement,
 } from 'chart.js'
-import { Bar, Doughnut, Line } from 'react-chartjs-2'
+import { Doughnut, Line } from 'react-chartjs-2'
 import { 
   TrendingUp, 
   DollarSign, 
